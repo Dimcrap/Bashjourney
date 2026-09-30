@@ -35,23 +35,26 @@ cascadetopips()
 	local changed=$1
 	local newip=$2
 	local newipval=$3
+
+	#echo "result new ip: ${newip} its values : ${newipval} changedvalue:${changed} "
+
 	
 	case $changed in
 	        1)
-			ip5=ip4;ip4=3;ip3=ip2;ip2=ip1;ip1=${newip}
-			ipval5=ipval4;ipval4=ipval3;ipval2=ipval1;ipval1=${newipval}		
+			ip5=${ip4};ip4=${ip3};ip3=${ip2};ip2=${ip1};ip1=${newip}
+			ipval5=${ipval4};ipval4=${ipval3};ipval2=${ipval1};ipval1=${newipval}		
 			;;
 		2)
-			ip5=ip4;ip4=3;ip3=ip2=${newip}
-			ipval5=ipval4;ipval4=ipval3;ipval2=${newipval}		
+			ip5=${ip4};ip4=${ip3};ip3=${ip2};ip2=${newip}
+			ipval5=${ipval4};ipval4=${ipval3};ipval2=${newipval}		
 			;;
 		3)
-			ip5=ip4;ip4=3;ip3=${newip}
-			ipval5=ipval4;ipval4=ipval3=${newipval}
+			ip5=${ip4};ip4=${ip3};ip3=${newip}
+			ipval5=${ipval4};ipval4=${ipval3};ipval3=${newipval}
 			;;
 		4)
-			ip5=ip4;ip4=${newip}
-			ipval5=ipval4;ipval4=${newipval}
+			ip5=${ip4};ip4=${newip}
+			ipval5=${ipval4};ipval4=${newipval}
 			;;
 		5)
 			ip5=${newip}
@@ -61,7 +64,7 @@ cascadetopips()
 			echo "undefined paramter to cascadetopips"
 			;;
 	esac
-		
+#	echo "cascade did its job"	
 }
 
 
@@ -74,23 +77,25 @@ comparewithtops()
 	local targetipcount=$1
 
  
-	echo "target ip count is : ${targetipcount} ip is: ${targetip} " 	
+	#echo "target ip count is : ${targetipcount} ip is: ${targetip} " 	
 
-	if [ $targetipcount -gt $ipval1 ];then
+	if [ ${targetipcount} -gt ${ipval1} ];then
+
 		cascadetopips 1  $targetip $targetipcount
-	elif [ $targetipcount -gt $ipval2  ];then
+
+	elif [ ${targetipcount} -gt ${ipval2}  ];then
 		
 		cascadetopips 2  $targetip $targetipcount
 		
-	elif [ $targetipcount -gt $ipval3  ];then
+	elif [ ${targetipcount} -gt ${ipval3}  ];then
 
 		cascadetopips 3  $targetip $targetipcount
 
-	elif [ $targetipcount -gt $ipval4  ];then 
+	elif [ ${targetipcount} -gt ${ipval4}  ];then 
 	
 		cascadetopips 4  $targetip $targetipcount
 
-	elif [ $targetipcount -gt $ipval5  ];then
+	elif [ ${targetipcount} -gt ${ipval5}  ];then
 		ip5=$targetip
 		ipval5=$targetipcount
 	fi	
@@ -103,10 +108,10 @@ definetopips()
 	for ((i=logfilelines;i>=0;i--)) 
 	do
 		grepped=$(cut -d ' ' -f 1 ${logfile}  | uniq -c | grep -m 1 " ${i} " )
-#|  awk -F' ' '{print $2}' )		
+	#|  awk -F' ' '{print $2}' )		
 	
 		if [ ! -z "${grepped}" ];then
-			echo " grepped ${i}  found something : ${grepped}  "
+		#	echo " grepped ${i}  found something : ${grepped}  "
 			comparewithtops ${grepped}  	
 		fi 
 		
