@@ -25,7 +25,6 @@ count_ip()
 {
 	targetip=$1
 	return $(grep -o ${targetip} ${logfile} | wc -l)
-	
 }
 
 	
@@ -122,7 +121,15 @@ definetopips()
 }
 
 
-#compareip
+
+
+definetoppaths()
+{
+	
+	
+
+}
+
 
 
 
@@ -145,8 +152,8 @@ fi
 
 definetopips
 
-echo -e  "top1:${ip1} top2:${ip2} top3:${ip3} top4:${ip4} top5:${ip5}"
-#ipval1=0;ipval2=0;ipval3=0;ipval4=0;ipval5=0
+echo -e  "top1:${ip1} top2:${ip2} top3:${ip3} top4:${ip4} top5:${ip5}
+  val1: ${ipval1} ; val2= ${ipval2} ; val3= ${ipval3} ; val4= ${ipval4} ; val5 = ${ipval5}"
 
 
 
