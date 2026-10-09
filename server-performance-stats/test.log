@@ -1,2 +1,5 @@
-cpuline top - 10:13:10 up 1:20, 1 user, load average: 0.28, 0.48, 0.52 Tasks: 241 total, 1 running, 240 sleep, 0 d-sleep, 0 stopped, 0 zombie %Cpu(s): 6.5 us, 5.4 sy, 0.0 ni, 83.7 id, 2.2 wa, 1.1 hi, 1.1 si, 0.0 st MiB Mem : 3826.8 total, 151.2 free, 3282.4 used, 1016.3 buff/cache MiB Swap: 4768.0 total, 3151.7 free, 1616.3 used. 544.4 avail Mem 
-
+    389 root      20   0  569132   9000   7052 S   4.7   0.2   2:09.94 Network+
+    539 mamadre+  39  19  257.0g  41796   9384 S   4.7   1.1   3:03.22 baloo_f+
+    699 mamadre+  20   0 2346264 178484  64728 S   4.7   4.6  19:06.53 plasmas+
+    708 mamadre+   9 -11  194976  15108   3408 S   4.7   0.4   4:10.72 pipewir+
+ 206259 mamadre+  20   0   10456   5516   3388 R   4.7   0.1   0:00.01 top
