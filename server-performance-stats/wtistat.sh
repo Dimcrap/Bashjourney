@@ -6,12 +6,12 @@ top5list=$( top -b -n 1 | head -n 13 | tail -n 5 )
 printTop5cpu(){
 
 	#top1=$( echo ${top5list} | awk -F ' ' '{print $12 }' )
-	top1=$( top -b -n 1 | sed -n 8p )
-	top2=$( top -b -n 1 | sed -n 9p )
-	top3=$( top -b -n 1 | sed -n 10p )
-	top4=$( top -b -n 1 | sed -n 11p )
-	top5=$( top -b -n 1 | sed -n 12p )
-	echo -e "\ntop 1th ${top1}\ntop 2th ${top2} \ntop 3th ${top3} \ntop 4th ${top4}\ntop 5th ${top5}\n "
+	top1=$( top -b -n 1 | sed -n 8p  | awk -F ' ' '{print $12}' )
+	top2=$( top -b -n 1 | sed -n 9p  | awk -F ' ' '{print $12}' )
+	top3=$( top -b -n 1 | sed -n 10p | awk -F ' ' '{print $12}' )
+	top4=$( top -b -n 1 | sed -n 11p | awk -F ' ' '{print $12}' )
+	top5=$( top -b -n 1 | sed -n 12p | awk -F ' ' '{print $12}' )
+	echo -e "top 5 most cpu using : \ntop 1th ${top1}\ttop 2th ${top2} \ntop 3th ${top3} \ttop 4th ${top4}\ntop 5th ${top5}\n "
 	
 }
 
@@ -21,6 +21,11 @@ cpuUs=$( echo ${tophead} | awk -F ' ' '{print $27 }' )
 cpuSy=$( echo ${tophead} | awk -F ' ' '{print $29 }' )
 
 # 'free' is usabe in this case 
+freeoutput=$( free -m )
+totalmem=$( echo ${freeoutput} | awk -F ' ' '{print $8}'   )
+usedmem=$( echo ${freeoutput} | awk -F ' ' '{print $9}' )
+
+echo -e "freeoutput result ${freeoutput}\ntotalmem output ${totalmem}\nused mem ${usedmem} "
 usedmemory=$( echo ${tophead} | awk -F ' ' '{print $48 }')
 freememory=$( echo ${tophead} | awk -F ' ' '{print $50 }')
 
@@ -37,7 +42,7 @@ echo -e "\t\t==== whatis server status ====\n"
 
 #${cpuUse}\n memory usage ${memUse} " 
 echo "result of summed total cpu usage : %${totalcpuU} "
-echo -e  "inuse %${usedmemory}  free: %${freememory} "
+echo -e "inuse %${usedmemory}  free: %${freememory} "
 echo -e "total disk : ${disktotal} used space of disk: ${diskused} \n"
 
 #echo " plusing result $(( ${cpuUs} + ${cpuSy} )) "
